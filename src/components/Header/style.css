@@ -1,0 +1,7 @@
+.container-header {
+    box-sizing: border-box;
+    width: 100%;
+    background-image: linear-gradient(to right,#05EDE3,#6460FB);
+    height: 200px;
+    padding: 55px 120px;
+}
