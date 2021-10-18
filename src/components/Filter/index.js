@@ -2,16 +2,19 @@ import './style.css'
 import '../../css/layout.css'
 import '../../css/spacing.css'
 
-import { useState, useEffect, useRef } from 'react'
+import useTasksList from '../../hooks/useTasksList'
 
-function Button({
-  filtroLimpo,
-  lista,
-  title,
-  item,
-  filterStatus,
-  setFilterStatus,
-}) {
+import { useState, useEffect } from 'react'
+
+function Button() {
+  const {
+    filtroLimpo,
+    lista,
+    title,
+    item,
+    filterStatus,
+    setFilterStatus,
+  } = useTasksList()
   const [active, setActive] = useState(filtroLimpo)
 
   useEffect(() => {
@@ -73,38 +76,29 @@ function Button({
   )
 }
 
-function Filters({ filtroLimpo, title, lista, filterStatus, setFilterStatus }) {
+function Filters() {
+  const { title, lista } = useTasksList()
   return (
     <div className="filter-containers">
       <h1 className="filter-title">{title}</h1>
       {lista.map((item) => {
-        return (
-          <Button
-            item={item}
-            filterStatus={filterStatus}
-            setFilterStatus={setFilterStatus}
-            title={title}
-            lista={lista}
-            filtroLimpo={filtroLimpo}
-          />
-        )
+        return <Button item={item} />
       })}
     </div>
   )
 }
 
-function Filter({
-  loadDebits,
-  loadCredits,
-  diasDaSemana,
-  categorias,
-  transactions,
-  setTransactions,
-  setShowFiltro,
-}) {
+function Filter({ showFiltro, setShowFiltro }) {
+  const {
+    loadDebits,
+    loadCredits,
+    diasDaSemana,
+    categorias,
+    transactions,
+    setTransactions,
+  } = useTasksList()
   const [max, setMax] = useState(0)
   const [min, setMin] = useState(0)
-  const [filtroLimpo, setfiltroLimpo] = useState(false)
 
   const [noFilterTransactions, setNoFilterTransactions] = useState([
     ...transactions,
@@ -167,20 +161,8 @@ function Filter({
 
   return (
     <div className="container-filters flex-grow3">
-      <Filters
-        title="Dia da Semana"
-        lista={diasDaSemana}
-        filterStatus={filterStatus}
-        setFilterStatus={setFilterStatus}
-        filtroLimpo={filtroLimpo}
-      />
-      <Filters
-        title="Categoria"
-        lista={categorias}
-        filterStatus={filterStatus}
-        setFilterStatus={setFilterStatus}
-        filtroLimpo={filtroLimpo}
-      />
+      <Filters title="Dia da Semana" lista={diasDaSemana} />
+      <Filters title="Categoria" lista={categorias} />
       <div className="flex-column justify-center pl-3">
         <h1 className="filter-title">Valor</h1>
         <label className="filter-label flex-column mb-2">

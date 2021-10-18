@@ -2,37 +2,31 @@ import './style.css'
 import '../../css/layout.css'
 import '../../css/spacing.css'
 
+import useTasksList from '../../hooks/useTasksList'
+
 import InputMask from 'react-input-mask'
 
-// import { useState } from 'react'
 import { getDay } from 'date-fns'
-// import { useEffect } from 'react'
 
-function Modal({
-  setShowModal,
-  loadTransactions,
-  transacInEditing,
-  value,
-  setValue,
-  category,
-  setCategory,
-  date,
-  setDate,
-  description,
-  setDescription,
-  credit,
-  setCredit,
-  debit,
-  setDebit,
-  showModal,
-  setTransacInEditing,
-  credits,
-  setCredits,
-  debits,
-  setDebits,
-  categorias,
-  setCategorias,
-}) {
+function Modal() {
+  const {
+    setShowModal,
+    loadTransactions,
+    transacInEditing,
+    value,
+    setValue,
+    category,
+    setCategory,
+    date,
+    setDate,
+    description,
+    setDescription,
+    credit,
+    setCredit,
+    debit,
+    setDebit,
+    setTransacInEditing,
+  } = useTasksList()
   async function handleSubmit() {
     if (!value || !category) {
       alert('Preencha os campos obrigatórios.')
