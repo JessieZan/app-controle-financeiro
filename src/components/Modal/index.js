@@ -8,9 +8,8 @@ import InputMask from 'react-input-mask'
 
 import { getDay } from 'date-fns'
 
-function Modal() {
+function Modal({ setShowModal }) {
   const {
-    setShowModal,
     loadTransactions,
     transacInEditing,
     value,
@@ -100,10 +99,7 @@ function Modal() {
       })
 
       await loadTransactions()
-      setValue('')
-      setCategory('')
-      setDate('')
-      setDescription('')
+      cleanModal()
     } catch (error) {
       console.log(error)
     }

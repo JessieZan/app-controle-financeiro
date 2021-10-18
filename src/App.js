@@ -37,12 +37,14 @@ function App() {
                 <Filter showFiltro={showFiltro} setShowFiltro={setShowFiltro} />
               )}
 
-              {<Table />}
+              {<Table setShowModal={setShowModal}/>}
             </div>
-            <Resume />
-            <button className="btn-add" onClick={() => setShowModal(true)}>
-              Adicionar Registro
-            </button>
+            <div className="flex-column">
+              <Resume />
+              <button className="btn-add" onClick={() => setShowModal(true)}>
+                Adicionar Registro
+              </button>
+            </div>
           </div>
         </div>
       </TasksListProvider>

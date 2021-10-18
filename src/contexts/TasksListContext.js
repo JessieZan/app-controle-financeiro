@@ -4,12 +4,12 @@ import useTasksListProvider from '../hooks/useTasksListProvider'
 const TasksListContext = createContext({})
 
 export function TasksListProvider(props) {
-  const valuesProvider = useTasksListProvider()
+  const tasksListProvider = useTasksListProvider()
   return (
-    <TasksListContext.Provider value={valuesProvider}>
+    <TasksListContext.Provider value={tasksListProvider}>
       {props.children}
     </TasksListContext.Provider>
   )
 }
 
-export default TasksListProvider
+export default TasksListContext

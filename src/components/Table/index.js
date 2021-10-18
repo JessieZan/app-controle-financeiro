@@ -11,11 +11,10 @@ import { useEffect } from 'react'
 import Line from './Line'
 import Head from './Head'
 
-function Table() {
+function Table({ setShowModal }) {
   const {
     transactions,
     setTransactions,
-    setShowModal,
     transacInEditing,
     setValue,
     setCategory,

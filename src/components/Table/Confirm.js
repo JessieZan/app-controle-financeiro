@@ -4,8 +4,8 @@ import '../../css/spacing.css'
 
 import useTasksList from '../../hooks/useTasksList'
 
-function Confirm({ transactionId }) {
-  const { loadTransactions, setShowConfirm } = useTasksList()
+function Confirm({ transactionId, setShowConfirm }) {
+  const { loadTransactions } = useTasksList()
   async function handleTransactionDelete(transactionID) {
     try {
       await fetch(`http://localhost:3333/transactions/${transactionID}`, {

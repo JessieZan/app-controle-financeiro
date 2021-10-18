@@ -6,15 +6,8 @@ import useTasksList from '../../hooks/useTasksList'
 
 import { useState, useEffect } from 'react'
 
-function Button() {
-  const {
-    filtroLimpo,
-    lista,
-    title,
-    item,
-    filterStatus,
-    setFilterStatus,
-  } = useTasksList()
+function Button({ item, lista, title, filterStatus, setFilterStatus }) {
+  const { filtroLimpo } = useTasksList()
   const [active, setActive] = useState(filtroLimpo)
 
   useEffect(() => {
@@ -76,13 +69,20 @@ function Button() {
   )
 }
 
-function Filters() {
-  const { title, lista } = useTasksList()
+function Filters({ title, lista, filterStatus, setFilterStatus }) {
   return (
     <div className="filter-containers">
       <h1 className="filter-title">{title}</h1>
       {lista.map((item) => {
-        return <Button item={item} />
+        return (
+          <Button
+            item={item}
+            lista={lista}
+            title={title}
+            filterStatus={filterStatus}
+            setFilterStatus={setFilterStatus}
+          />
+        )
       })}
     </div>
   )
@@ -161,8 +161,18 @@ function Filter({ showFiltro, setShowFiltro }) {
 
   return (
     <div className="container-filters flex-grow3">
-      <Filters title="Dia da Semana" lista={diasDaSemana} />
-      <Filters title="Categoria" lista={categorias} />
+      <Filters
+        title="Dia da Semana"
+        lista={diasDaSemana}
+        filterStatus={filterStatus}
+        setFilterStatus={setFilterStatus}
+      />
+      <Filters
+        title="Categoria"
+        lista={categorias}
+        filterStatus={filterStatus}
+        setFilterStatus={setFilterStatus}
+      />
       <div className="flex-column justify-center pl-3">
         <h1 className="filter-title">Valor</h1>
         <label className="filter-label flex-column mb-2">

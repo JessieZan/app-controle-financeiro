@@ -9,8 +9,8 @@ import { format } from 'date-fns'
 
 import Confirm from './Confirm'
 
-function Line() {
-  const { transaction, setTransacInEditing, diasDaSemana } = useTasksList()
+function Line({ transaction }) {
+  const { setTransacInEditing, diasDaSemana } = useTasksList()
   const [showConfirm, setShowConfirm] = useState(false)
 
   function formatWeekDay(dia) {
@@ -58,7 +58,13 @@ function Line() {
           onClick={() => setShowConfirm(!showConfirm)}
         ></img>
       </div>
-      {showConfirm && <Confirm transactionId={transaction.id} />}
+      {showConfirm && (
+        <Confirm
+          transactionId={transaction.id}
+          showConfirm={showConfirm}
+          setShowConfirm={setShowConfirm}
+        />
+      )}
     </div>
   )
 }
